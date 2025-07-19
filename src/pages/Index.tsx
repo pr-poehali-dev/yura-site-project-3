@@ -182,7 +182,7 @@ const Index = () => {
                   />
                 </div>
                 <div className="flex justify-between text-sm text-slate-300">
-                  <span>Минимальная сумма: $100</span>
+                  <span>Без минимальной суммы</span>
                   <span>Максимальная сумма: $50,000</span>
                 </div>
                 <div className="grid grid-cols-3 gap-3">
