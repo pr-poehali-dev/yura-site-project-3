@@ -9,6 +9,27 @@ import Icon from '@/components/ui/icon';
 const Index = () => {
   const [investAmount, setInvestAmount] = useState('');
   const [floatingCards, setFloatingCards] = useState([]);
+  const [visibleTrades, setVisibleTrades] = useState(6);
+  
+  // Registration & Login states
+  const [isLogin, setIsLogin] = useState(false);
+  const [showQr, setShowQr] = useState(false);
+  
+  // Registration form states
+  const [regLogin, setRegLogin] = useState('');
+  const [regPassword, setRegPassword] = useState('');
+  const [regWallet, setRegWallet] = useState('');
+  
+  // Login form states
+  const [loginUsername, setLoginUsername] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
+  const [loginCode, setLoginCode] = useState('');
+  
+  const handleRegister = () => {
+    if (regLogin && regPassword && regWallet) {
+      setShowQr(true);
+    }
+  };
 
   // Generate floating cards with random positions
   useEffect(() => {
@@ -107,8 +128,12 @@ const Index = () => {
               { coin: 'SOL/USDT', profit: '-2.1%', amount: '450 SOL', time: '6ч назад', status: 'loss', exchange: 'OKX' },
               { coin: 'ADA/USDT', profit: '+15.7%', amount: '12,000 ADA', time: '8ч назад', status: 'profit', exchange: 'Binance' },
               { coin: 'MATIC/USDT', profit: '+6.9%', amount: '8,500 MATIC', time: '10ч назад', status: 'profit', exchange: 'Bybit' },
-              { coin: 'DOT/USDT', profit: '+4.3%', amount: '1,200 DOT', time: '12ч назад', status: 'profit', exchange: 'KuCoin' }
-            ].map((trade, index) => (
+              { coin: 'DOT/USDT', profit: '+4.3%', amount: '1,200 DOT', time: '12ч назад', status: 'profit', exchange: 'KuCoin' },
+              { coin: 'LINK/USDT', profit: '+9.8%', amount: '2,400 LINK', time: '14ч назад', status: 'profit', exchange: 'Binance' },
+              { coin: 'UNI/USDT', profit: '+3.4%', amount: '3,200 UNI', time: '16ч назад', status: 'profit', exchange: 'Bybit' },
+              { coin: 'XRP/USDT', profit: '-1.5%', amount: '18,000 XRP', time: '18ч назад', status: 'loss', exchange: 'OKX' },
+              { coin: 'AVAX/USDT', profit: '+11.2%', amount: '850 AVAX', time: '20ч назад', status: 'profit', exchange: 'KuCoin' }
+            ].slice(0, visibleTrades).map((trade, index) => (
               <Card key={index} className={`bg-gradient-to-br ${trade.status === 'profit' ? 'from-emerald-500/10 to-transparent border-emerald-400/30' : 'from-red-500/10 to-transparent border-red-400/30'} hover:border-opacity-60 transition-all duration-300 transform hover:scale-[1.02] ${index % 2 === 0 ? 'md:rotate-1' : 'md:-rotate-1'} hover:rotate-0`}>
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between">
@@ -117,7 +142,7 @@ const Index = () => {
                         <Icon name="Coins" className={trade.status === 'profit' ? 'text-emerald-400' : 'text-red-400'} size={24} />
                       </div>
                       <div>
-                        <div className="font-bold text-lg text-white">{trade.coin}</div>
+                        <div className="font-bold text-lg text-slate-100">{trade.coin}</div>
                         <div className="text-sm text-slate-400">{trade.amount} • {trade.exchange}</div>
                       </div>
                     </div>
@@ -132,6 +157,19 @@ const Index = () => {
               </Card>
             ))}
           </div>
+
+          {/* Load More Button */}
+          {visibleTrades < 10 && (
+            <div className="text-center mb-8">
+              <Button 
+                onClick={() => setVisibleTrades(10)}
+                className="bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
+              >
+                <Icon name="Download" className="mr-2" size={16} />
+                Загрузить еще сделок
+              </Button>
+            </div>
+          )}
 
           {/* Statistics summary */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-12">
@@ -199,42 +237,149 @@ const Index = () => {
       {/* Registration & Investment Section */}
       <section className="relative z-10 px-6 py-20">
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
-          {/* Registration Form */}
+          {/* Registration & Login Forms */}
           <Card className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 border-emerald-400/30 backdrop-blur-sm">
             <CardContent className="p-8">
-              <h2 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-                Регистрация
-              </h2>
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium mb-2 text-slate-300">Email</label>
-                  <Input
-                    type="email"
-                    placeholder="your@email.com"
-                    className="bg-slate-800/50 border-emerald-400/30 text-white placeholder-slate-400 focus:border-emerald-400"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2 text-slate-300">Telegram</label>
-                  <Input
-                    type="text"
-                    placeholder="@username"
-                    className="bg-slate-800/50 border-emerald-400/30 text-white placeholder-slate-400 focus:border-emerald-400"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2 text-slate-300">Криpto кошелек</label>
-                  <Input
-                    type="text"
-                    placeholder="0x..."
-                    className="bg-slate-800/50 border-emerald-400/30 text-white placeholder-slate-400 focus:border-emerald-400"
-                  />
-                </div>
-                <Button size="lg" className="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-slate-900 font-bold">
-                  <Icon name="UserPlus" className="mr-2" size={20} />
-                  Создать аккаунт
-                </Button>
+              {/* Tabs for Registration/Login */}
+              <div className="flex mb-6 bg-slate-800/50 rounded-lg p-1">
+                <button 
+                  onClick={() => setIsLogin(false)}
+                  className={`flex-1 px-4 py-2 text-sm font-medium rounded-md transition-all ${
+                    !isLogin 
+                      ? 'bg-emerald-500 text-white shadow-lg' 
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  Регистрация
+                </button>
+                <button 
+                  onClick={() => setIsLogin(true)}
+                  className={`flex-1 px-4 py-2 text-sm font-medium rounded-md transition-all ${
+                    isLogin 
+                      ? 'bg-emerald-500 text-white shadow-lg' 
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  Вход
+                </button>
               </div>
+
+              {!isLogin ? (
+                <>
+                  <h2 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+                    Регистрация
+                  </h2>
+                  {!showQr ? (
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-sm font-medium mb-2 text-slate-300">Логин</label>
+                        <Input
+                          type="text"
+                          placeholder="Введите логин"
+                          value={regLogin}
+                          onChange={(e) => setRegLogin(e.target.value)}
+                          className="bg-slate-800/50 border-emerald-400/30 text-white placeholder-slate-400 focus:border-emerald-400"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2 text-slate-300">Пароль</label>
+                        <Input
+                          type="password"
+                          placeholder="Введите пароль"
+                          value={regPassword}
+                          onChange={(e) => setRegPassword(e.target.value)}
+                          className="bg-slate-800/50 border-emerald-400/30 text-white placeholder-slate-400 focus:border-emerald-400"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2 text-slate-300">Кошелек USDT</label>
+                        <Input
+                          type="text"
+                          placeholder="0x... или адрес кошелька"
+                          value={regWallet}
+                          onChange={(e) => setRegWallet(e.target.value)}
+                          className="bg-slate-800/50 border-emerald-400/30 text-white placeholder-slate-400 focus:border-emerald-400"
+                        />
+                      </div>
+                      <Button 
+                        size="lg" 
+                        onClick={handleRegister}
+                        disabled={!regLogin || !regPassword || !regWallet}
+                        className="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-bold disabled:opacity-50"
+                      >
+                        <Icon name="UserPlus" className="mr-2" size={20} />
+                        Зарегистрироваться
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="text-center space-y-6">
+                      <div className="bg-white p-6 rounded-lg inline-block">
+                        <div className="w-48 h-48 bg-slate-200 flex items-center justify-center text-slate-600 text-sm">
+                          QR-код для привязки<br/>Telegram бота
+                        </div>
+                      </div>
+                      <div className="space-y-4">
+                        <p className="text-slate-300 text-sm">
+                          Отсканируйте QR-код в Telegram боте для завершения регистрации
+                        </p>
+                        <Button 
+                          size="lg" 
+                          className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold"
+                        >
+                          <Icon name="MessageCircle" className="mr-2" size={20} />
+                          Привязать Telegram
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <>
+                  <h2 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+                    Авторизация
+                  </h2>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium mb-2 text-slate-300">Логин</label>
+                      <Input
+                        type="text"
+                        placeholder="Введите логин"
+                        value={loginUsername}
+                        onChange={(e) => setLoginUsername(e.target.value)}
+                        className="bg-slate-800/50 border-emerald-400/30 text-white placeholder-slate-400 focus:border-emerald-400"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2 text-slate-300">Пароль</label>
+                      <Input
+                        type="password"
+                        placeholder="Введите пароль"
+                        value={loginPassword}
+                        onChange={(e) => setLoginPassword(e.target.value)}
+                        className="bg-slate-800/50 border-emerald-400/30 text-white placeholder-slate-400 focus:border-emerald-400"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2 text-slate-300">Код из Telegram</label>
+                      <Input
+                        type="text"
+                        placeholder="Введите код подтверждения"
+                        value={loginCode}
+                        onChange={(e) => setLoginCode(e.target.value)}
+                        className="bg-slate-800/50 border-emerald-400/30 text-white placeholder-slate-400 focus:border-emerald-400"
+                      />
+                    </div>
+                    <Button 
+                      size="lg" 
+                      disabled={!loginUsername || !loginPassword || !loginCode}
+                      className="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-bold disabled:opacity-50"
+                    >
+                      <Icon name="LogIn" className="mr-2" size={20} />
+                      Войти
+                    </Button>
+                  </div>
+                </>
+              )}
             </CardContent>
           </Card>
 
