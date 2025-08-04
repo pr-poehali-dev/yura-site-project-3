@@ -31,25 +31,41 @@ const InvestmentForm: React.FC<InvestmentFormProps> = ({ investAmount, setInvest
           <div className="text-center text-sm text-slate-300">
             <span>Без минимальной суммы • Только криптовалюты</span>
           </div>
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-3 gap-2 mb-2">
             <Button 
               variant="outline" 
-              onClick={() => setInvestAmount('1000')}
-              className="border-cyan-400/30 text-cyan-400 hover:bg-cyan-400 hover:text-slate-900"
+              onClick={() => setInvestAmount('10')}
+              className="border-cyan-400/30 text-cyan-400 hover:bg-cyan-400 hover:text-slate-900 text-xs py-2"
             >
-              1K USDT
+              10
             </Button>
             <Button 
               variant="outline" 
+              onClick={() => setInvestAmount('100')}
+              className="border-cyan-400/30 text-cyan-400 hover:bg-cyan-400 hover:text-slate-900 text-xs py-2"
+            >
+              100
+            </Button>
+            <Button 
+              variant="outline" 
+              onClick={() => setInvestAmount('1000')}
+              className="border-cyan-400/30 text-cyan-400 hover:bg-cyan-400 hover:text-slate-900 text-xs py-2"
+            >
+              1K
+            </Button>
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+            <Button 
+              variant="outline" 
               onClick={() => setInvestAmount('5000')}
-              className="border-cyan-400/30 text-cyan-400 hover:bg-cyan-400 hover:text-slate-900"
+              className="border-cyan-400/30 text-cyan-400 hover:bg-cyan-400 hover:text-slate-900 text-xs py-2"
             >
               5K USDT
             </Button>
             <Button 
               variant="outline" 
               onClick={() => setInvestAmount('10000')}
-              className="border-cyan-400/30 text-cyan-400 hover:bg-cyan-400 hover:text-slate-900"
+              className="border-cyan-400/30 text-cyan-400 hover:bg-cyan-400 hover:text-slate-900 text-xs py-2"
             >
               10K USDT
             </Button>
