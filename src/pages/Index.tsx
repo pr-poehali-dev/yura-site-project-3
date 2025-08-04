@@ -28,10 +28,17 @@ const Index = () => {
   const [loginUsername, setLoginUsername] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [loginCode, setLoginCode] = useState('');
+  const [showTelegramCode, setShowTelegramCode] = useState(false);
   
   const handleRegister = () => {
     if (regLogin && regPassword && regWallet) {
       setShowQr(true);
+    }
+  };
+
+  const handleSendTelegramCode = () => {
+    if (loginUsername && loginPassword) {
+      setShowTelegramCode(true);
     }
   };
 
@@ -123,7 +130,10 @@ const Index = () => {
             setLoginPassword={setLoginPassword}
             loginCode={loginCode}
             setLoginCode={setLoginCode}
+            showTelegramCode={showTelegramCode}
+            setShowTelegramCode={setShowTelegramCode}
             handleRegister={handleRegister}
+            handleSendTelegramCode={handleSendTelegramCode}
           />
 
           {/* Investment Form */}

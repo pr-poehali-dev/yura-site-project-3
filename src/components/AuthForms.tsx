@@ -20,7 +20,10 @@ interface AuthFormsProps {
   setLoginPassword: (value: string) => void;
   loginCode: string;
   setLoginCode: (value: string) => void;
+  showTelegramCode: boolean;
+  setShowTelegramCode: (value: boolean) => void;
   handleRegister: () => void;
+  handleSendTelegramCode: () => void;
 }
 
 const AuthForms: React.FC<AuthFormsProps> = ({
@@ -39,7 +42,10 @@ const AuthForms: React.FC<AuthFormsProps> = ({
   setLoginPassword,
   loginCode,
   setLoginCode,
+  showTelegramCode,
+  setShowTelegramCode,
   handleRegister,
+  handleSendTelegramCode,
 }) => {
   return (
     <Card className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 border-emerald-400/30 backdrop-blur-sm">
@@ -163,24 +169,42 @@ const AuthForms: React.FC<AuthFormsProps> = ({
                   className="bg-slate-800/50 border-emerald-400/30 text-white placeholder-slate-400 focus:border-emerald-400"
                 />
               </div>
-              <div>
-                <label className="block text-sm font-medium mb-2 text-slate-300">Код из Telegram</label>
-                <Input
-                  type="text"
-                  placeholder="Введите код подтверждения"
-                  value={loginCode}
-                  onChange={(e) => setLoginCode(e.target.value)}
-                  className="bg-slate-800/50 border-emerald-400/30 text-white placeholder-slate-400 focus:border-emerald-400"
-                />
-              </div>
-              <Button 
-                size="lg" 
-                disabled={!loginUsername || !loginPassword || !loginCode}
-                className="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-bold disabled:opacity-50"
-              >
-                <Icon name="LogIn" className="mr-2" size={20} />
-                Войти
-              </Button>
+              
+              {/* Кнопка отправки кода появляется только после ввода логина и пароля */}
+              {loginUsername && loginPassword && !showTelegramCode && (
+                <Button 
+                  size="lg" 
+                  onClick={handleSendTelegramCode}
+                  className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold"
+                >
+                  <Icon name="MessageCircle" className="mr-2" size={20} />
+                  Отправить код в Telegram
+                </Button>
+              )}
+              
+              {/* Поле для кода и кнопка входа появляются только после отправки кода */}
+              {showTelegramCode && (
+                <>
+                  <div>
+                    <label className="block text-sm font-medium mb-2 text-slate-300">Код из Telegram</label>
+                    <Input
+                      type="text"
+                      placeholder="Введите код подтверждения"
+                      value={loginCode}
+                      onChange={(e) => setLoginCode(e.target.value)}
+                      className="bg-slate-800/50 border-emerald-400/30 text-white placeholder-slate-400 focus:border-emerald-400"
+                    />
+                  </div>
+                  <Button 
+                    size="lg" 
+                    disabled={!loginCode}
+                    className="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-bold disabled:opacity-50"
+                  >
+                    <Icon name="LogIn" className="mr-2" size={20} />
+                    Войти
+                  </Button>
+                </>
+              )}
             </div>
           </>
         )}

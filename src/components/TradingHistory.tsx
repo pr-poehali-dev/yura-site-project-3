@@ -39,7 +39,7 @@ const TradingHistory: React.FC<TradingHistoryProps> = ({ visibleTrades, setVisib
                       <Icon name="Coins" className={trade.status === 'profit' ? 'text-emerald-400' : 'text-red-400'} size={24} />
                     </div>
                     <div>
-                      <div className="font-bold text-lg text-slate-100">{trade.coin}</div>
+                      <div className="font-bold text-lg text-emerald-400">{trade.coin}</div>
                       <div className="text-sm text-slate-400">{trade.amount} • {trade.exchange}</div>
                     </div>
                   </div>
