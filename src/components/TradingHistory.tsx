@@ -23,31 +23,31 @@ const TradingHistory: React.FC<TradingHistoryProps> = ({ visibleTrades, setVisib
   ];
 
   return (
-    <section className="relative z-10 px-6 py-20">
+    <section className="relative z-10 px-6 py-20 bg-black">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+        <h2 className="text-4xl font-bold text-center mb-16 text-white">
           История сделок
         </h2>
         
         <div className="grid gap-4 mb-8">
           {trades.slice(0, visibleTrades).map((trade, index) => (
-            <Card key={index} className={`bg-gradient-to-br ${trade.status === 'profit' ? 'from-emerald-500/10 to-transparent border-emerald-400/30' : 'from-red-500/10 to-transparent border-red-400/30'} hover:border-opacity-60 transition-all duration-300 transform hover:scale-[1.02] ${index % 2 === 0 ? 'md:rotate-1' : 'md:-rotate-1'} hover:rotate-0`}>
+            <Card key={index} className={`${trade.status === 'profit' ? 'bg-gray-900 border-white/20' : 'bg-gray-900 border-red-400/30'} hover:border-white/40 transition-all duration-300 transform hover:scale-[1.02]`}>
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-4">
-                    <div className={`w-12 h-12 rounded-full ${trade.status === 'profit' ? 'bg-emerald-400/20' : 'bg-red-400/20'} flex items-center justify-center`}>
-                      <Icon name="Coins" className={trade.status === 'profit' ? 'text-emerald-400' : 'text-red-400'} size={24} />
+                    <div className={`w-12 h-12 rounded-full ${trade.status === 'profit' ? 'bg-white/10' : 'bg-red-400/20'} flex items-center justify-center`}>
+                      <Icon name="Coins" className={trade.status === 'profit' ? 'text-white' : 'text-red-400'} size={24} />
                     </div>
                     <div>
-                      <div className="font-bold text-lg text-emerald-400">{trade.coin}</div>
-                      <div className="text-sm text-slate-400">{trade.amount} • {trade.exchange}</div>
+                      <div className="font-bold text-lg text-white">{trade.coin}</div>
+                      <div className="text-sm text-gray-400">{trade.amount} • {trade.exchange}</div>
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className={`text-xl font-bold ${trade.status === 'profit' ? 'text-emerald-400' : 'text-red-400'}`}>
+                    <div className={`text-xl font-bold ${trade.status === 'profit' ? 'text-white' : 'text-red-400'}`}>
                       {trade.profit}
                     </div>
-                    <div className="text-sm text-slate-400">{trade.time}</div>
+                    <div className="text-sm text-gray-400">{trade.time}</div>
                   </div>
                 </div>
               </CardContent>
@@ -60,7 +60,7 @@ const TradingHistory: React.FC<TradingHistoryProps> = ({ visibleTrades, setVisib
           <div className="text-center mb-8">
             <Button 
               onClick={() => setVisibleTrades(10)}
-              className="bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
+              className="bg-white text-black hover:bg-gray-200 px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
             >
               <Icon name="Download" className="mr-2" size={16} />
               Загрузить еще сделок
@@ -70,35 +70,35 @@ const TradingHistory: React.FC<TradingHistoryProps> = ({ visibleTrades, setVisib
 
         {/* Statistics summary */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-12">
-          <Card className="bg-gradient-to-br from-emerald-500/10 to-transparent border-emerald-400/30 hover:border-emerald-400/60 transition-all duration-300 transform hover:scale-105 md:rotate-2 hover:rotate-0">
+          <Card className="bg-gray-900 border-white/20 hover:border-white/40 transition-all duration-300 transform hover:scale-105">
             <CardContent className="p-6 text-center">
-              <Icon name="TrendingUp" className="mx-auto mb-4 text-emerald-400" size={32} />
-              <div className="text-3xl font-bold text-emerald-400 mb-2">86%</div>
-              <div className="text-sm text-slate-300">Успешных сделок</div>
+              <Icon name="TrendingUp" className="mx-auto mb-4 text-white" size={32} />
+              <div className="text-3xl font-bold text-white mb-2">86%</div>
+              <div className="text-sm text-gray-400">Успешных сделок</div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-cyan-500/10 to-transparent border-cyan-400/30 hover:border-cyan-400/60 transition-all duration-300 transform hover:scale-105 md:-rotate-1 hover:rotate-0">
+          <Card className="bg-gray-900 border-white/20 hover:border-white/40 transition-all duration-300 transform hover:scale-105">
             <CardContent className="p-6 text-center">
-              <Icon name="Coins" className="mx-auto mb-4 text-cyan-400" size={32} />
-              <div className="text-3xl font-bold text-cyan-400 mb-2">2.3M</div>
-              <div className="text-sm text-slate-300">USDT в управлении</div>
+              <Icon name="Coins" className="mx-auto mb-4 text-white" size={32} />
+              <div className="text-3xl font-bold text-white mb-2">2.3M</div>
+              <div className="text-sm text-gray-400">USDT в управлении</div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-blue-500/10 to-transparent border-blue-400/30 hover:border-blue-400/60 transition-all duration-300 transform hover:scale-105 md:rotate-1 hover:rotate-0">
+          <Card className="bg-gray-900 border-white/20 hover:border-white/40 transition-all duration-300 transform hover:scale-105">
             <CardContent className="p-6 text-center">
-              <Icon name="Users" className="mx-auto mb-4 text-blue-400" size={32} />
-              <div className="text-3xl font-bold text-blue-400 mb-2">1,247</div>
-              <div className="text-sm text-slate-300">Активных инвесторов</div>
+              <Icon name="Users" className="mx-auto mb-4 text-white" size={32} />
+              <div className="text-3xl font-bold text-white mb-2">1,247</div>
+              <div className="text-sm text-gray-400">Активных инвесторов</div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-purple-500/10 to-transparent border-purple-400/30 hover:border-purple-400/60 transition-all duration-300 transform hover:scale-105 md:-rotate-2 hover:rotate-0">
+          <Card className="bg-gray-900 border-white/20 hover:border-white/40 transition-all duration-300 transform hover:scale-105">
             <CardContent className="p-6 text-center">
-              <Icon name="Shield" className="mx-auto mb-4 text-purple-400" size={32} />
-              <div className="text-3xl font-bold text-purple-400 mb-2">24/7</div>
-              <div className="text-sm text-slate-300">Мониторинг рынка</div>
+              <Icon name="Shield" className="mx-auto mb-4 text-white" size={32} />
+              <div className="text-3xl font-bold text-white mb-2">24/7</div>
+              <div className="text-sm text-gray-400">Мониторинг рынка</div>
             </CardContent>
           </Card>
         </div>
