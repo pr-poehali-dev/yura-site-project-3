@@ -4,27 +4,52 @@ import Icon from '@/components/ui/icon';
 
 const HeroSection: React.FC = () => {
   return (
-    <section className="relative z-10 px-6 py-20 text-center">
+    <section className="relative z-10 px-6 py-32 text-center bg-gradient-to-b from-black to-gray-900">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-4xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent animate-fade-in" style={{fontFamily: 'Orbitron, monospace'}}>
-          NexusTrade
+        <div className="mb-8">
+          <span className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-gray-300 border border-white/20 mb-8">
+            🚀 Профессиональная торговля криптовалютами
+          </span>
+        </div>
+        <h1 className="text-5xl md:text-7xl font-black mb-6 text-white leading-tight">
+          Максимальная
+          <br />
+          <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+            прибыль
+          </span>
         </h1>
-        <h2 className="text-2xl md:text-4xl font-bold mb-6 animate-fade-in" style={{animationDelay: '0.2s'}}>
-          Профессиональная торговля криптовалютами
-        </h2>
-        <p className="text-xl text-slate-300 mb-12 max-w-3xl mx-auto animate-fade-in" style={{animationDelay: '0.4s'}}>
-          Команда опытных трейдеров управляет капиталом с использованием продвинутых алгоритмов. 
-          Стабильная прибыль, полная прозрачность операций и защита инвестиций через криптовалюты.
+        <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed">
+          Команда профессиональных трейдеров управляет вашим капиталом с использованием 
+          передовых алгоритмов и многолетнего опыта работы на крипто-рынках.
         </p>
-        <div className="flex flex-col md:flex-row gap-6 justify-center animate-fade-in" style={{animationDelay: '0.6s'}}>
-          <Button size="lg" className="bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-slate-900 font-bold px-8 py-4 rounded-full transform hover:scale-105 transition-all duration-300">
-            <Icon name="UserPlus" className="mr-2" size={20} />
-            Регистрация
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <Button size="lg" className="bg-white text-black hover:bg-gray-200 font-semibold px-8 py-4 rounded-lg">
+            <Icon name="TrendingUp" className="mr-2" size={20} />
+            Начать инвестировать
           </Button>
-          <Button size="lg" variant="outline" className="border-2 border-emerald-400 text-emerald-400 hover:bg-emerald-400 hover:text-slate-900 px-8 py-4 rounded-full">
+          <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-lg">
             <Icon name="BarChart3" className="mr-2" size={20} />
-            История сделок
+            Посмотреть статистику
           </Button>
+        </div>
+        
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 pt-16 border-t border-gray-800">
+          <div className="text-center">
+            <div className="text-3xl font-bold text-white mb-2">85%</div>
+            <div className="text-sm text-gray-400">Успешных сделок</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-white mb-2">$2.4M</div>
+            <div className="text-sm text-gray-400">Под управлением</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-white mb-2">24/7</div>
+            <div className="text-sm text-gray-400">Мониторинг рынка</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-white mb-2">3 года</div>
+            <div className="text-sm text-gray-400">Опыт команды</div>
+          </div>
         </div>
       </div>
     </section>

@@ -59,7 +59,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden relative">
+    <div className="min-h-screen bg-black text-white overflow-hidden relative">
       {/* Floating background cards */}
       {floatingCards.map((card) => (
         <div
@@ -72,28 +72,28 @@ const Index = () => {
             animationDelay: `${card.delay}s`
           }}
         >
-          <Card className="w-32 h-20 bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 border-emerald-400/30">
+          <Card className="w-32 h-20 bg-gray-900/20 border-gray-700/30">
             <CardContent className="p-3">
-              <div className="h-2 bg-emerald-400/50 rounded mb-2"></div>
-              <div className="h-1 bg-cyan-400/50 rounded"></div>
+              <div className="h-2 bg-gray-600/50 rounded mb-2"></div>
+              <div className="h-1 bg-gray-500/50 rounded"></div>
             </CardContent>
           </Card>
         </div>
       ))}
 
       {/* Navigation */}
-      <nav className="relative z-10 flex justify-between items-center p-6 backdrop-blur-sm">
-        <div className="text-2xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+      <nav className="relative z-10 flex justify-between items-center p-6 bg-black/50 backdrop-blur-xl border-b border-white/10">
+        <div className="text-2xl font-bold text-white">
           NexusTrade
         </div>
         <div className="hidden md:flex space-x-8">
           {['Главная', 'Стратегия', 'Статистика', 'Инвестирование', 'FAQ'].map((item) => (
-            <a key={item} href="#" className="hover:text-emerald-400 transition-colors duration-300">
+            <a key={item} href="#" className="text-gray-300 hover:text-white transition-colors duration-300">
               {item}
             </a>
           ))}
         </div>
-        <Button variant="outline" className="border-emerald-400 text-emerald-400 hover:bg-emerald-400 hover:text-slate-900">
+        <Button className="bg-white text-black hover:bg-gray-200">
           Личный кабинет
         </Button>
       </nav>
@@ -148,24 +148,24 @@ const Index = () => {
       <FAQSection />
 
       {/* Footer */}
-      <footer className="relative z-10 px-6 py-12 bg-slate-900/80 border-t border-emerald-400/20">
+      <footer className="relative z-10 px-6 py-12 bg-black border-t border-gray-800">
         <div className="max-w-6xl mx-auto text-center">
-          <div className="text-2xl font-bold mb-4 bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+          <div className="text-2xl font-bold mb-4 text-white">
             NexusTrade
           </div>
-          <p className="text-slate-400 mb-6">Профессиональные торговые решения для вашего капитала</p>
-          <div className="flex justify-center space-x-6 text-slate-400">
-            <a href="#" className="hover:text-emerald-400 transition-colors">
+          <p className="text-gray-400 mb-6">Профессиональные торговые решения для вашего капитала</p>
+          <div className="flex justify-center space-x-6 text-gray-400">
+            <a href="#" className="hover:text-white transition-colors">
               <Icon name="Mail" size={20} />
             </a>
-            <a href="#" className="hover:text-emerald-400 transition-colors">
+            <a href="#" className="hover:text-white transition-colors">
               <Icon name="Phone" size={20} />
             </a>
-            <a href="#" className="hover:text-emerald-400 transition-colors">
+            <a href="#" className="hover:text-white transition-colors">
               <Icon name="MessageCircle" size={20} />
             </a>
           </div>
-          <div className="mt-8 pt-8 border-t border-slate-700 text-sm text-slate-500">
+          <div className="mt-8 pt-8 border-t border-gray-800 text-sm text-gray-500">
             © 2024 NexusTrade. Все права защищены. Инвестиции сопряжены с рисками.
           </div>
         </div>
